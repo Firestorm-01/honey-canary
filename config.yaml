@@ -1,0 +1,47 @@
+canary:
+  watchpaths:
+    - "/opt/secrets/honeypot.txt"
+    - "/opt/secrets/passwords.txt"
+  events:
+    - read
+    - write
+    - chmod
+    - rename
+    - delete
+    - access
+  selfheal: true
+  content: "CONFIDENTIAL\npassword=hunter2\napi_key=sk-prod-abc123\n"
+
+stealth:
+  processname: "kworker/0:1-events"
+  maxmemorymb: 20
+
+heartbeat:
+  intervalseconds: 300
+  endpoint: "https://your-monitoring-server.com/heartbeat"
+
+alerting:
+  primary:
+    type: "discord"
+    webhookurl: "https://discord.com/api/webhooks/YOUR_ID/YOUR_TOKEN"
+  backup:
+    type: "webhook"
+    webhookurl: "https://your-backup-server.com/alert"
+    authheader: "Bearer YOUR_TOKEN"
+  hmacsecret: "change-this-to-a-random-secret"
+
+ratelimit:
+  maxalerts: 5
+  windowseconds: 60
+
+antitamper:
+  configpath: "./config.yaml"
+  deathgasp: true
+
+audit:
+  logpath: "/var/log/honey-canary-audit.jsonl"
+  enabled: true
+
+metrics:
+  enabled: true
+  addr: ":9101"
