@@ -1,5 +1,5 @@
-# Honey-Canary — Story & System Description
-
+# Honey-Canary
+⚠️Entire project needs to be tested before usage.This is a prototype. 
 ## The Idea
 
 Imagine a security team protecting a company network. Instead of guarding only real secrets, they also place fake bait:
